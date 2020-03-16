@@ -455,6 +455,6 @@ class __TwigTemplate_a63de251286fbd723869f883d8f7451512f6ddc0794a0c657436e10a072
 </ul>
 
 {% block main_menu_after %}{% endblock %}
-", "@EasyAdmin/default/menu.html.twig", "/home/clement/progWebAvancee/edtiut/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/menu.html.twig");
+", "@EasyAdmin/default/menu.html.twig", "/home/clement/edt/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/menu.html.twig");
     }
 }

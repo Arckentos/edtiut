@@ -79,6 +79,6 @@ class __TwigTemplate_60ed2182719325a950f33acc30fee5532c573c4b498bd1ae5431dd54a44
 {% else %}
     <span title=\"{{ value }}\">{{ value|striptags|easyadmin_truncate }}</span>
 {% endif %}
-", "@EasyAdmin/default/field_string.html.twig", "/home/clement/progWebAvancee/edtiut/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/field_string.html.twig");
+", "@EasyAdmin/default/field_string.html.twig", "/home/clement/edt/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/field_string.html.twig");
     }
 }

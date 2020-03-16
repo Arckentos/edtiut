@@ -4,51 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDT IUT</title>
+    <title>Balance ton prof !</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 
 <body>
-    <div id="app" class="container-fluid">
+    <div id="app" class="container">
         <div class="row">
-            <div class="col-12">
-                <h1 class="text-center">Emploi du temps</h1>
-                <div class="row mt-5">
-                    <div class="col-2">
-                        <input type="image" src="./img/back.png" style="width:32px; height:32px" alt="back_button">
-                        <input type="image" src="./img/next.png" style="width:32px; height:32px" alt="next_button">
-                    </div>
-
-
-                    <div class="col-3"v-for="professeur in professeurs">
-                        <div class="card" style="width: 18rem;" >
+            <div class="col-8">
+                <h1>Note ton prof !</h1>
+                <div class="row">
+                    <div class="col-6" v-for="professeur in professeurs">
+                        <div class="card" :class="{'bg-secondary' : professeur === professeurSelectionne}">
                             <div class="card-body">
-                                <h5 class="card-title">nomDeLaMatiere</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">heureDuCours</h6>
-                                <p class="card-text">laSalleEtLeProfesseur</p>
+                                <h5 class="card-title">{{professeur.prenom + ' ' + professeur.nom }}</h5>
+                                <p class="card-text">
+                                    {{professeur.email}}
+                                    <button class="btn btn-primary" style="margin-top:10px"
+                                        v-on:click="getProfesseursAvis(professeur.id)">AFFICHER LES AVIS</button>
+                                </p>
                             </div>
                         </div>
-                        <!-- <div class="card" :class="{'bg-secondary' : professeur === professeurSelectionne}">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{professeur.prenom + ' ' + professeur.nom }}</h5>
-                                    <p class="card-text">
-                                        {{professeur.email}}
-                                        <button class="btn btn-primary" style="margin-top:10px"
-                                            v-on:click="getProfesseursAvis(professeur.id)">AFFICHER LES AVIS</button>
-                                    </p>
-                                </div>
-                            </div> -->
-
                     </div>
                 </div>
             </div>
-
-
-
-
-            <!-- <div class="col-4" v-if="professeurSelectionne != null">
+            <div class="col-4" v-if="professeurSelectionne != null">
                 <h2>Avis de {{ professeurSelectionne.prenom + ' ' + professeurSelectionne.nom }}</h2>
 
                 <div class="alert alert-success" v-if="profNotes.includes(professeurSelectionne)">Votre avis a été
@@ -89,11 +71,10 @@
                         <p class="card-text">
                             {{ unAvis.commentaire }}
                         </p>
-                        <button class="btn btn-danger" v-if="mesAvis.includes(unAvis)"
-                            @click="deleteAvis(unAvis)">Supprimer</button>
+                        <button class="btn btn-danger" v-if="mesAvis.includes(unAvis)" @click="deleteAvis(unAvis)">Supprimer</button>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
         </div>
     </div>

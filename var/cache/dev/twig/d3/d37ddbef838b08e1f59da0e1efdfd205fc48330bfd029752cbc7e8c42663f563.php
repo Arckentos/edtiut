@@ -64,6 +64,6 @@ class __TwigTemplate_2728e789e43dd19960c85df61ed8f105fac0778bd1f4b689f42232c61ac
     {
         return new Source("{# this field template is used to avoid formatting the special ID attribute as a number #}
 {{ value }}
-", "@EasyAdmin/default/field_id.html.twig", "/home/clement/progWebAvancee/edtiut/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/field_id.html.twig");
+", "@EasyAdmin/default/field_id.html.twig", "/home/clement/edt/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/field_id.html.twig");
     }
 }
