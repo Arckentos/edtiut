@@ -4,3 +4,5 @@ easy_admin:
        - App\Entity\Professeur
        - App\Entity\Avis
        - App\Entity\Matiere
+       - App\Entity\Salle
+       - App\Entity\Cours
