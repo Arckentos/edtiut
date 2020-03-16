@@ -32,13 +32,13 @@ class Cours
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\salle", inversedBy="cours")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="cours")
      * @ORM\JoinColumn(nullable=false)
      */
     private $salle;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\professeur", inversedBy="cours")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Professeur", inversedBy="cours")
      * @ORM\JoinColumn(nullable=false)
      */
     private $professeur;
@@ -84,24 +84,24 @@ class Cours
         return $this;
     }
 
-    public function getSalle(): ?salle
+    public function getSalle(): ?Salle
     {
         return $this->salle;
     }
 
-    public function setSalle(?salle $salle): self
+    public function setSalle(?Salle $salle): self
     {
         $this->salle = $salle;
 
         return $this;
     }
 
-    public function getProfesseur(): ?professeur
+    public function getProfesseur(): ?Professeur
     {
         return $this->professeur;
     }
 
-    public function setProfesseur(?professeur $professeur): self
+    public function setProfesseur(?Professeur $professeur): self
     {
         $this->professeur = $professeur;
 
