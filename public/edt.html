@@ -4,33 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balance ton prof !</title>
+    <title>EDT IUT</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 
 <body>
-    <div id="app" class="container">
+    <div id="app" class="container-fluid">
         <div class="row">
-            <div class="col-8">
-                <h1>Note ton prof !</h1>
-                <div class="row">
-                    <div class="col-6" v-for="professeur in professeurs">
-                        <div class="card" :class="{'bg-secondary' : professeur === professeurSelectionne}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{professeur.prenom + ' ' + professeur.nom }}</h5>
-                                <p class="card-text">
-                                    {{professeur.email}}
-                                    <button class="btn btn-primary" style="margin-top:10px"
-                                        v-on:click="getProfesseursAvis(professeur.id)">AFFICHER LES AVIS</button>
-                                </p>
+            <div class="col-12">
+                <h1 class="text-center">Emploi du temps</h1>
+                <div class="row mt-5">
+                    <div class="col-2">
+                        <input type="image" src="./img/back.png" @click="backAction()" style="width:32px; height:32px"
+                            alt="back_button">
+                        <input type="image" src="./img/next.png" @click="nextAction()" style="width:32px; height:32px"
+                            alt="next_button">
+                        <h3>{{displayDate}}</h3>
+                        <select name="selectViewType" id="selectViewType">
+                            <option value="jour">Jour</option>
+                            <option value="semaine">Semaine</option>
+                            <option value="mois">Mois</option>
+                        </select>
+                    </div>
+
+                    <div class="col-9">
+                        <div class="row">
+
+                            <div class="col-3 mb-4" style="max-width:none" v-for="unCours in cours" v-if="isClassesToday(unCours.date)">
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{unCours.matiere}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{unCours.heureDebut}} -
+                                            {{unCours.heureFin}}</h6>
+                                        <p class="card-text">{{unCours.type}} {{unCours.professeur}} {{unCours.date}}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        {{unCours.salle}}
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
-            <div class="col-4" v-if="professeurSelectionne != null">
+
+
+
+
+            <!-- <div class="col-4" v-if="professeurSelectionne != null">
                 <h2>Avis de {{ professeurSelectionne.prenom + ' ' + professeurSelectionne.nom }}</h2>
 
                 <div class="alert alert-success" v-if="profNotes.includes(professeurSelectionne)">Votre avis a été
@@ -71,10 +99,11 @@
                         <p class="card-text">
                             {{ unAvis.commentaire }}
                         </p>
-                        <button class="btn btn-danger" v-if="mesAvis.includes(unAvis)" @click="deleteAvis(unAvis)">Supprimer</button>
+                        <button class="btn btn-danger" v-if="mesAvis.includes(unAvis)"
+                            @click="deleteAvis(unAvis)">Supprimer</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>
@@ -95,6 +124,73 @@
                 nouvelAvis: {},
                 profNotes: [],
                 mesAvis: [],
+                cours: [{
+                    matiere: "Maths",
+                    date: "16.03.2020",
+                    heureDebut: "11h00",
+                    heureFin: "12h00",
+                    type: "type",
+                    professeur: "M. Machin",
+                    salle: 101,
+                }, {
+                    matiere: "Français",
+                    date: "16.03.2020",
+                    heureDebut: "12h00",
+                    heureFin: "13h00",
+                    type: "type",
+                    professeur: "M. Truc",
+                    salle: 202
+                }, {
+                    matiere: "Anglais",
+                    date: "16.03.2020",
+                    heureDebut: "10h00",
+                    heureFin: "11h00",
+                    type: "type",
+                    professeur: "M. Bidule",
+                    salle: 10,
+                }, {
+                    matiere: "Physique",
+                    date: "16.03.2020",
+                    heureDebut: "09h00",
+                    heureFin: "10h00",
+                    type: "type",
+                    professeur: "M. Chouette",
+                    salle: 305
+                }, {
+                    matiere: "Physique",
+                    date: "16.03.2020",
+                    heureDebut: "09h00",
+                    heureFin: "10h00",
+                    type: "type",
+                    professeur: "M. Chouette",
+                    salle: 305
+                }, {
+                    matiere: "Physique",
+                    date: "16.03.2020",
+                    heureDebut: "09h00",
+                    heureFin: "10h00",
+                    type: "type",
+                    professeur: "M. Chouette",
+                    salle: 305
+                }, {
+                    matiere: "Maths",
+                    date: "18.03.2020",
+                    heureDebut: "11h00",
+                    heureFin: "12h00",
+                    type: "type",
+                    professeur: "M. Machin",
+                    salle: 101,
+                }, {
+                    matiere: "Français",
+                    date: "18.03.2020",
+                    heureDebut: "12h00",
+                    heureFin: "13h00",
+                    type: "type",
+                    professeur: "M. Truc",
+                    salle: 202
+                }],
+                date: "01.01.1970",
+                displayDate: "",
             },
             methods: {
                 getProfesseurs: function () {
@@ -142,10 +238,35 @@
                         .catch(error => {
                             console.log(error);
                         });
-                }
+                }, getCours: function () {
+
+                }, backAction: function () {
+                    var currentDate = new Date(this.date)
+                    currentDate.setDate(currentDate.getDate() - 1);
+                    this.date = currentDate;
+                    this.displayDate = this.formatDate(currentDate);
+                }, nextAction: function () {
+                    var currentDate = new Date(this.date)
+                    currentDate.setDate(currentDate.getDate() + 1);
+                    this.date = currentDate;
+                    this.displayDate = this.formatDate(currentDate);
+                }, formatDate: function (date) {
+                    var currentDate = new Date(date);
+                    var day = currentDate.getDate();
+                    var month = currentDate.getMonth() + 1;
+                    var year = currentDate.getFullYear();
+                    month < 10 ? month = "0" + month : month;
+                    currentDate = day + "." + month + "." + year;
+                    return currentDate;
+                }, isClassesToday: function (classesDate) {
+                    return this.displayDate == classesDate ? true : false;
+                },
             },
             mounted() {
-                this.getProfesseurs();
+                // this.getProfesseurs();
+                this.date = new Date();
+                this.displayDate = this.formatDate(this.date);
+                this.getCours()
             }
         });
     </script>
