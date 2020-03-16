@@ -23,13 +23,19 @@ class Cours
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="time")
      * @Assert\NotBlank()
      */
     private $dateHeureDebut;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="time")
      * @Assert\NotBlank()
      */
     private $dateHeureFin;
@@ -51,6 +57,12 @@ class Cours
      */
     private $professeur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Matiere", inversedBy="cours")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $matiere;
+
 
 
 
@@ -63,9 +75,13 @@ class Cours
     {
         return [
             'id' => $this->getId(),
+            'date' => $this->getdate(),
             'dateHeureDebut' => $this->getDateHeureDebut(),
             'dateHeureFin' => $this->getDateHeureFin(),
             'type' => $this->getType(),
+            'salle' =>$this->getSalle()->__toString(),
+            'professeur' =>$this->getProfesseur()->__toString(),
+            'matiere' =>$this->getMatiere()->__toString(),
         ];
     }
 
@@ -74,24 +90,36 @@ class Cours
         return $this->id;
     }
 
-    public function getDateHeureDebut(): ?\DateTimeInterface
+    public function getDate(): ?\DateTime
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTime $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getDateHeureDebut() 
     {
         return $this->dateHeureDebut;
     }
 
-    public function setDateHeureDebut(\DateTimeInterface $dateHeureDebut): self
+    public function setDateHeureDebut( $dateHeureDebut): self
     {
         $this->dateHeureDebut = $dateHeureDebut;
 
         return $this;
     }
 
-    public function getDateHeureFin(): ?\DateTimeInterface
+    public function getDateHeureFin(): ?\DateTime
     {
         return $this->dateHeureFin;
     }
 
-    public function setDateHeureFin(\DateTimeInterface $dateHeureFin): self
+    public function setDateHeureFin(\DateTime $dateHeureFin): self
     {
         $this->dateHeureFin = $dateHeureFin;
 
@@ -133,6 +161,18 @@ class Cours
     public function setProfesseur(?Professeur $professeur): self
     {
         $this->professeur = $professeur;
+
+        return $this;
+    }
+
+    public function getMatiere(): ?Matiere
+    {
+        return $this->matiere;
+    }
+
+    public function setMatiere(?Matiere $matiere): self
+    {
+        $this->matiere = $matiere;
 
         return $this;
     }

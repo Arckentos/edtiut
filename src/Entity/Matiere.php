@@ -30,9 +30,15 @@ class Matiere
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Professeur", mappedBy="matieres")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Professeur", mappedBy="matiere")
      */
     private $professeurs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Cours", mappedBy="matiere")
+     */
+    private $cours;
+
 
     public function __construct()
     {
@@ -41,7 +47,7 @@ class Matiere
 
     public function __toString()
     {
-        return sprintf('%s (%s)', $this->titre, $this->reference);
+        return $this->titre;
     }
 
     public function toArray()
@@ -103,6 +109,28 @@ class Matiere
         if ($this->professeurs->contains($professeur)) {
             $this->professeurs->removeElement($professeur);
             $professeur->removeMatiere($this);
+        }
+
+        return $this;
+    }
+
+
+     /**
+     * @return Collection|Cours[]
+     */
+    public function getCours(): Collection
+    {
+        return $this->cours;
+    }
+
+    public function removeUnCours(Cours $unCours): self
+    {
+        if ($this->cours->contains($unCours)) {
+            $this->cours->removeElement($unCours);
+            // set the owning side to null (unless already changed)
+            if ($unCours->getMatiere() === $this) {
+                $unCours->setMatiere(null);
+            }
         }
 
         return $this;

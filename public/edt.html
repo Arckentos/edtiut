@@ -38,11 +38,10 @@
                                         <h5 class="card-title">{{unCours.matiere}}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
                                             {{unCours.dateHeureFin}}</h6>
-                                        <p class="card-text">{{unCours.type}} {{unCours.professeur}} {{unCours.date}}
-                                        </p>
+                                        <p class="card-text">{{ unCours.date }} {{unCours.type}} {{unCours.salle}}</p>
                                     </div>
                                     <div class="card-footer text-muted">
-                                        {{unCours.salle}}
+                                        {{unCours.professeur}}
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +176,7 @@
                 }, getCours: function () {
                     axios.get(this.apiBase + '/cours')
                         .then(response => {
-                            console.log(response.data)
+                            console.log(response.data[0])
                             this.cours = response.data;
                         })
                         .catch(error => {
