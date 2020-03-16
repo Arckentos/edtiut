@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 
 use App\Entity\Avis;
 use App\Entity\Professeur;
+use App\Entity\Cours;
 use App\Form\AvisType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,12 +47,12 @@ class ProfesseurController extends AbstractController
 
 
         // Méthode 3
-        // return $this->json(array_map(function ($professeur) {
-        //     return $professeur->toArray();
-        // }, $professeurs));
+        return $this->json(array_map(function ($professeur) {
+            return $professeur->toArray();
+        }, $professeurs));
 
         // Méthode 4
-        return $this->json($professeurs, 200, [], ['ignored_attributes' => ['professeurs', 'professeur']]);
+        // return $this->json($professeurs, 200, [], ['ignored_attributes' => ['professeurs', 'professeur']]);
     }
 
     /**
@@ -70,6 +71,16 @@ class ProfesseurController extends AbstractController
         return $this->json(array_map(function ($avis) {
             return $avis->toArray();
         }, $professeur->getAvis()->toArray()));
+    }
+
+    /**
+     * @Route("/professeurs/{id}/cours", name="api_get_professeurs_cours", methods="GET")
+     */
+    public function getProfesseurCours(Professeur $professeur)
+    {
+        return $this->json(array_map(function ($unCours) {
+            return $unCours->toArray();
+        }, $professeur->getCours()->toArray()));
     }
 
     /**
@@ -152,4 +163,6 @@ class ProfesseurController extends AbstractController
         // OU => Symfony renvoie tout seul le header
         // $return $this->json(null,204);
     }
+
+
 }

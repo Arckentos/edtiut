@@ -12,7 +12,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'App\\Repository\\AvisRepository',
             ],
             'message' => [
-                1 => 'Ce professeur possède déjà un avis donné par cette adresse',
+                1 => 'Ce professeur possède déjà un avis donné par cette adresse !',
             ],
             'fields' => [
                 1 => [

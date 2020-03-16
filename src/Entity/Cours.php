@@ -3,9 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CoursRepository")
+ * @UniqueEntity(
+ *      fields={"professeur", "dateHeureDebut"},
+ *      errorPath="dateHeureDebut",
+ *      message="Ce professeur a déjà un cours à cette heure !")
  */
 class Cours
 {
@@ -18,11 +24,13 @@ class Cours
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $dateHeureDebut;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $dateHeureFin;
 
@@ -42,6 +50,24 @@ class Cours
      * @ORM\JoinColumn(nullable=false)
      */
     private $professeur;
+
+
+
+
+    public function __toString()
+    {
+        return strval($this->id);
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'dateHeureDebut' => $this->getDateHeureDebut(),
+            'dateHeureFin' => $this->getDateHeureFin(),
+            'type' => $this->getType(),
+        ];
+    }
 
     public function getId(): ?int
     {
@@ -83,6 +109,9 @@ class Cours
 
         return $this;
     }
+
+
+    
 
     public function getSalle(): ?Salle
     {

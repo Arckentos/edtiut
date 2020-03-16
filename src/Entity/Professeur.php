@@ -101,18 +101,18 @@ class Professeur
     {
         $this->prenom = $prenom;
         return $this;
-        // Le fait de mettre un return permet à la complétion de la table de faire $professeur->setNom()->setPrenom()->setEmail();
     }
-
+    
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
+    
     public function setEmail(string $email): self
     {
         $this->email = $email;
         return $this;
+        // Le fait de mettre un return permet à la complétion de la table de faire $professeur->setNom()->setPrenom()->setEmail();
     }
 
     /**
@@ -180,23 +180,23 @@ class Professeur
         return $this->cours;
     }
 
-    public function addCour(Cours $cour): self
+    public function addUnCours(Cours $unCours): self
     {
-        if (!$this->cours->contains($cour)) {
-            $this->cours[] = $cour;
-            $cour->setProfesseur($this);
+        if (!$this->cours->contains($unCours)) {
+            $this->cours[] = $unCours;
+            $unCours->setProfesseur($this);
         }
 
         return $this;
     }
 
-    public function removeCour(Cours $cour): self
+    public function removeUnCours(Cours $unCours): self
     {
-        if ($this->cours->contains($cour)) {
-            $this->cours->removeElement($cour);
+        if ($this->cours->contains($unCours)) {
+            $this->cours->removeElement($unCours);
             // set the owning side to null (unless already changed)
-            if ($cour->getProfesseur() === $this) {
-                $cour->setProfesseur(null);
+            if ($unCours->getProfesseur() === $this) {
+                $unCours->setProfesseur(null);
             }
         }
 

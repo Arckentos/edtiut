@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as UniqueEntity;
  * @UniqueEntity(
  *      fields={"professeur", "emailEtudiant"},
  *      errorPath="emailEtudiant",
- *      message="Ce professeur possède déjà un avis donné par cette adresse")
+ *      message="Ce professeur possède déjà un avis donné par cette adresse !")
  */
 class Avis
 {

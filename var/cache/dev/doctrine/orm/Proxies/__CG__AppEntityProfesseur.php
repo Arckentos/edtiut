@@ -359,23 +359,23 @@ class Professeur extends \App\Entity\Professeur implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function addCour(\App\Entity\Cours $cour): \App\Entity\Professeur
+    public function addUnCours(\App\Entity\Cours $unCours): \App\Entity\Professeur
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCour', [$cour]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addUnCours', [$unCours]);
 
-        return parent::addCour($cour);
+        return parent::addUnCours($unCours);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeCour(\App\Entity\Cours $cour): \App\Entity\Professeur
+    public function removeUnCours(\App\Entity\Cours $unCours): \App\Entity\Professeur
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCour', [$cour]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeUnCours', [$unCours]);
 
-        return parent::removeCour($cour);
+        return parent::removeUnCours($unCours);
     }
 
 }
