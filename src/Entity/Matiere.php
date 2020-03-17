@@ -30,7 +30,7 @@ class Matiere
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Professeur", mappedBy="matiere")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Professeur", mappedBy="matieres")
      */
     private $professeurs;
 
@@ -43,6 +43,7 @@ class Matiere
     public function __construct()
     {
         $this->professeurs = new ArrayCollection();
+        $this->cours = new ArrayCollection();
     }
 
     public function __toString()
