@@ -17,9 +17,10 @@ easy_admin:
       class: App\Entity\Cours
       form:
         fields:
+          - matiere
+          - date
           - dateHeureDebut
           - dateHeureFin
-          - matiere
           - professeur
           - salle
           - {

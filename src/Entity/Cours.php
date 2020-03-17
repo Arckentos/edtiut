@@ -6,12 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as UniqueEntity;
 
+
+//  * @UniqueEntity(
+//  *      fields={"professeur", "dateHeureDebut"},
+//  *      errorPath="dateHeureDebut",
+//  *      message="Ce professeur a déjà un cours à cette heure !")
+
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CoursRepository")
- * @UniqueEntity(
- *      fields={"professeur", "dateHeureDebut"},
- *      errorPath="dateHeureDebut",
- *      message="Ce professeur a déjà un cours à cette heure !")
+
  */
 class Cours
 {

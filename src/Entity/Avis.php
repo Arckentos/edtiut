@@ -101,10 +101,11 @@ class Avis
 
         return $this;
     }
+    
 
     public function __toString()
     {
-        return sprintf('%s (%s/5', $this->emailEtudiant, $this->note);
+        return sprintf('%s (%s/5)', $this->emailEtudiant, $this->note);
     }
 
     public function toArray()

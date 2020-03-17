@@ -36,8 +36,12 @@ class Matiere
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Cours", mappedBy="matiere")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $cours;
+
+
+
 
 
     public function __construct()
@@ -86,6 +90,9 @@ class Matiere
 
         return $this;
     }
+
+
+
 
     /**
      * @return Collection|Professeur[]

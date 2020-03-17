@@ -17,33 +17,59 @@
                 <h1 class="text-center">Emploi du temps</h1>
                 <div class="row mt-5">
                     <div class="col-2">
-                        <input type="image" src="./img/back.png" @click="backAction()" style="width:32px; height:32px"
-                            alt="back_button">
-                        <input type="image" src="./img/next.png" @click="nextAction()" style="width:32px; height:32px"
-                            alt="next_button">
-                        <h3>{{displayDate}}</h3>
-                        <select name="selectViewType" id="selectViewType">
-                            <option value="jour">Jour</option>
-                            <option value="semaine">Semaine</option>
-                            <option value="mois">Mois</option>
+                        <div style="display: inline-block;">
+                            <input type="image" src="img/back.png" @click="backAction()" style="width:32px; height:32px"
+                                alt="back_button">
+                            <input type="image" src="img/next.png" @click="nextAction()" style="width:32px; height:32px"
+                                alt="next_button">
+                            <input class="ml-3" type="image" src="img/new.svg" @click="newCours()"
+                                style="width: 32px; height:32px;" alt="new_button">
+                        </div>
+                        <h3 class="mt-3 mb-3">{{displayDate}}</h3>
+                        <select name="selectViewType" id="selectViewType" v-model="view">
+                            <option value="listingByDay">Jour</option>
+                            <option value="listingByWeek">Semaine</option>
+                            <option value="listingByMonth">Mois</option>
                         </select>
                     </div>
 
                     <div class="col-9">
                         <div class="row">
 
-                            <div class="col-3 mb-4" style="max-width:none" v-for="unCours in cours">
+                            <div class="col-3 mb-4" style="max-width:none" v-for="unCours in cours"
+                                v-if="view == 'listingByDay'">
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
                                         <h5 class="card-title">{{unCours.matiere.titre}}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
                                             {{unCours.dateHeureFin}}</h6>
-                                        <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}</p>
+                                        <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}
+                                        </p>
                                     </div>
                                     <div class="card-footer text-muted">
                                         {{unCours.professeur.nom}}
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="col-12" v-for="unCours in cours" v-if="view == 'listingByWeek'">
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{unCours.matiere.titre}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
+                                            {{unCours.dateHeureFin}}</h6>
+                                        <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        {{unCours.professeur.nom}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12" v-if="view == 'new'">
+                                <input type="text" name="" id="" value="test">
+                                <input type="button" value="" @click="view = 'listingByDay'">
                             </div>
 
                         </div>
@@ -126,6 +152,7 @@
                 cours: [],
                 date: "01.01.1970",
                 displayDate: "",
+                view: "listingByDay",
             },
             methods: {
                 getProfesseurs: function () {
@@ -176,12 +203,21 @@
                 }, getCours: function () {
                     axios.get(this.apiBase + '/cours')
                         .then(response => {
-                            console.log(response.data[0])
                             this.cours = response.data;
+                            this.cours.forEach(unCours => {
+                                var currentDate = new Date(unCours.date)
+                                unCours.date = this.formatDate(currentDate);
+                                currentDate = new Date(unCours.dateHeureDebut);
+                                unCours.dateHeureDebut = this.formatHour(currentDate);
+                                currentDate = new Date(unCours.dateHeureFin);
+                                unCours.dateHeureFin = this.formatHour(currentDate);
+                            });
                         })
                         .catch(error => {
                             console.log(error);
                         });
+                }, newCours: function () {
+                    this.view = 'new';
                 }, backAction: function () {
                     var currentDate = new Date(this.date)
                     currentDate.setDate(currentDate.getDate() - 1);
@@ -197,9 +233,18 @@
                     var day = currentDate.getDate();
                     var month = currentDate.getMonth() + 1;
                     var year = currentDate.getFullYear();
+                    day < 10 ? day = "0" + day : day;
                     month < 10 ? month = "0" + month : month;
                     currentDate = day + "." + month + "." + year;
                     return currentDate;
+                }, formatHour: function (date) {
+                    var currentDate = new Date(date);
+                    var hour = currentDate.getHours();
+                    var min = currentDate.getMinutes();
+                    hour < 10 ? hour = "0" + hour : hour;
+                    min < 10 ? min = "0" + min : min;
+                    var currentHour = hour + ":" + min;
+                    return currentHour;
                 }, isClassesToday: function (classesDate) {
                     return this.displayDate == classesDate ? true : false;
                 },
