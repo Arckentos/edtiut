@@ -185,18 +185,24 @@
     <parameter key="security.access.always_authenticate_before_granting">false</parameter>
     <parameter key="security.authentication.hide_user_not_found">true</parameter>
     <parameter key="easyadmin.config" type="collection">
+      <parameter key="formats" type="collection">
+        <parameter key="date">d/m/Y</parameter>
+        <parameter key="time">H:i</parameter>
+        <parameter key="datetime">d/m/Y H:i</parameter>
+        <parameter key="dateinterval">%y Year(s) %m Month(s) %d Day(s)</parameter>
+      </parameter>
       <parameter key="entities" type="collection">
         <parameter key="Professeur" type="collection">
           <parameter key="class">App\Entity\Professeur</parameter>
           <parameter key="name">Professeur</parameter>
         </parameter>
-        <parameter key="Avis" type="collection">
-          <parameter key="class">App\Entity\Avis</parameter>
-          <parameter key="name">Avis</parameter>
-        </parameter>
         <parameter key="Matiere" type="collection">
           <parameter key="class">App\Entity\Matiere</parameter>
           <parameter key="name">Matiere</parameter>
+        </parameter>
+        <parameter key="Avis" type="collection">
+          <parameter key="class">App\Entity\Avis</parameter>
+          <parameter key="name">Avis</parameter>
         </parameter>
         <parameter key="Salle" type="collection">
           <parameter key="class">App\Entity\Salle</parameter>
@@ -204,16 +210,30 @@
         </parameter>
         <parameter key="Cours" type="collection">
           <parameter key="class">App\Entity\Cours</parameter>
+          <parameter key="form" type="collection">
+            <parameter key="fields" type="collection">
+              <parameter>dateHeureDebut</parameter>
+              <parameter>dateHeureFin</parameter>
+              <parameter>matiere</parameter>
+              <parameter>professeur</parameter>
+              <parameter>salle</parameter>
+              <parameter type="collection">
+                <parameter key="property">type</parameter>
+                <parameter key="type">choice</parameter>
+                <parameter key="type_options" type="collection">
+                  <parameter key="choices" type="collection">
+                    <parameter key="Cours">Cours</parameter>
+                    <parameter key="TD">TD</parameter>
+                    <parameter key="TP">TP</parameter>
+                  </parameter>
+                </parameter>
+              </parameter>
+            </parameter>
+          </parameter>
           <parameter key="name">Cours</parameter>
         </parameter>
       </parameter>
       <parameter key="site_name">EasyAdmin</parameter>
-      <parameter key="formats" type="collection">
-        <parameter key="date">Y-m-d</parameter>
-        <parameter key="time">H:i:s</parameter>
-        <parameter key="datetime">F j, Y H:i</parameter>
-        <parameter key="dateinterval">%y Year(s) %m Month(s) %d Day(s)</parameter>
-      </parameter>
       <parameter key="disabled_actions" type="collection"/>
       <parameter key="translation_domain">messages</parameter>
       <parameter key="user" type="collection">

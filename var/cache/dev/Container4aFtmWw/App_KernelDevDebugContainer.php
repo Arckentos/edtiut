@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerBQ4hJmC;
+namespace Container4aFtmWw;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -38,6 +38,7 @@ class App_KernelDevDebugContainer extends Container
             'kernel' => true,
         ];
         $this->methodMap = [
+            'App\\Controller\\Api\\CoursController' => 'getCoursControllerService',
             'App\\Controller\\Api\\ProfesseurController' => 'getProfesseurControllerService',
             'App\\Controller\\ProfesseurController' => 'getProfesseurController2Service',
             'EasyCorp\\Bundle\\EasyAdminBundle\\Controller\\EasyAdminController' => 'getEasyAdminControllerService',
@@ -302,6 +303,23 @@ class App_KernelDevDebugContainer extends Container
     public function getRemovedIds(): array
     {
         return require $this->containerDir.\DIRECTORY_SEPARATOR.'removed-ids.php';
+    }
+
+    /**
+     * Gets the public 'App\Controller\Api\CoursController' shared autowired service.
+     *
+     * @return \App\Controller\Api\CoursController
+     */
+    protected function getCoursControllerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/framework-bundle/Controller/AbstractController.php';
+        include_once \dirname(__DIR__, 4).'/src/Controller/Api/CoursController.php';
+
+        $this->services['App\\Controller\\Api\\CoursController'] = $instance = new \App\Controller\Api\CoursController();
+
+        $instance->setContainer(($this->privates['.service_locator.pNNo5z3'] ?? $this->get_ServiceLocator_PNNo5z3Service())->withContext('App\\Controller\\Api\\CoursController', $this));
+
+        return $instance;
     }
 
     /**
@@ -1718,42 +1736,6 @@ class App_KernelDevDebugContainer extends Container
     }
 
     /**
-     * Gets the private '.service_locator.IiAlEqg' shared service.
-     *
-     * @return \Symfony\Component\DependencyInjection\ServiceLocator
-     */
-    protected function get_ServiceLocator_IiAlEqgService()
-    {
-        return $this->privates['.service_locator.IiAlEqg'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
-            'App\\Controller\\Api\\ProfesseurController::deleteAvis' => ['privates', '.service_locator.Sf.RFGb', 'get_ServiceLocator_Sf_RFGbService', false],
-            'App\\Controller\\Api\\ProfesseurController::deleteCours' => ['privates', '.service_locator.bLLPtQ0', 'get_ServiceLocator_BLLPtQ0Service', false],
-            'App\\Controller\\Api\\ProfesseurController::getCours' => ['privates', '.service_locator._CDY2gJ', 'get_ServiceLocator_CDY2gJService', false],
-            'App\\Controller\\Api\\ProfesseurController::getProfesseur' => ['privates', '.service_locator.KqZSwLy', 'get_ServiceLocator_KqZSwLyService', false],
-            'App\\Controller\\Api\\ProfesseurController::getProfesseurAvis' => ['privates', '.service_locator.KqZSwLy', 'get_ServiceLocator_KqZSwLyService', false],
-            'App\\Controller\\Api\\ProfesseurController::getProfesseurCours' => ['privates', '.service_locator.KqZSwLy', 'get_ServiceLocator_KqZSwLyService', false],
-            'App\\Controller\\Api\\ProfesseurController::getProfesseurs' => ['privates', '.service_locator._CDY2gJ', 'get_ServiceLocator_CDY2gJService', false],
-            'App\\Controller\\Api\\ProfesseurController::getUnCours' => ['privates', '.service_locator.CBdC_sR', 'get_ServiceLocator_CBdCSRService', false],
-            'App\\Controller\\Api\\ProfesseurController::putProfesseurAvis' => ['privates', '.service_locator.AXZ0CZ.', 'get_ServiceLocator_AXZ0CZ_Service', false],
-            'App\\Controller\\ProfesseurController::create' => ['privates', '.service_locator._CDY2gJ', 'get_ServiceLocator_CDY2gJService', false],
-            'App\\Controller\\ProfesseurController::delete' => ['privates', '.service_locator.MEkRFnv', 'get_ServiceLocator_MEkRFnvService', false],
-            'App\\Controller\\ProfesseurController::edit' => ['privates', '.service_locator._CDY2gJ', 'get_ServiceLocator_CDY2gJService', false],
-        ], [
-            'App\\Controller\\Api\\ProfesseurController::deleteAvis' => '?',
-            'App\\Controller\\Api\\ProfesseurController::deleteCours' => '?',
-            'App\\Controller\\Api\\ProfesseurController::getCours' => '?',
-            'App\\Controller\\Api\\ProfesseurController::getProfesseur' => '?',
-            'App\\Controller\\Api\\ProfesseurController::getProfesseurAvis' => '?',
-            'App\\Controller\\Api\\ProfesseurController::getProfesseurCours' => '?',
-            'App\\Controller\\Api\\ProfesseurController::getProfesseurs' => '?',
-            'App\\Controller\\Api\\ProfesseurController::getUnCours' => '?',
-            'App\\Controller\\Api\\ProfesseurController::putProfesseurAvis' => '?',
-            'App\\Controller\\ProfesseurController::create' => '?',
-            'App\\Controller\\ProfesseurController::delete' => '?',
-            'App\\Controller\\ProfesseurController::edit' => '?',
-        ]);
-    }
-
-    /**
      * Gets the private '.service_locator.KqZSwLy' shared service.
      *
      * @return \Symfony\Component\DependencyInjection\ServiceLocator
@@ -1862,6 +1844,42 @@ class App_KernelDevDebugContainer extends Container
             'serializer' => '?',
             'session' => '?',
             'twig' => '?',
+        ]);
+    }
+
+    /**
+     * Gets the private '.service_locator.pSoRQ4j' shared service.
+     *
+     * @return \Symfony\Component\DependencyInjection\ServiceLocator
+     */
+    protected function get_ServiceLocator_PSoRQ4jService()
+    {
+        return $this->privates['.service_locator.pSoRQ4j'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'App\\Controller\\Api\\CoursController::deleteCours' => ['privates', '.service_locator.bLLPtQ0', 'get_ServiceLocator_BLLPtQ0Service', false],
+            'App\\Controller\\Api\\CoursController::getCours' => ['privates', '.service_locator._CDY2gJ', 'get_ServiceLocator_CDY2gJService', false],
+            'App\\Controller\\Api\\CoursController::getUnCours' => ['privates', '.service_locator.CBdC_sR', 'get_ServiceLocator_CBdCSRService', false],
+            'App\\Controller\\Api\\ProfesseurController::deleteAvis' => ['privates', '.service_locator.Sf.RFGb', 'get_ServiceLocator_Sf_RFGbService', false],
+            'App\\Controller\\Api\\ProfesseurController::getProfesseur' => ['privates', '.service_locator.KqZSwLy', 'get_ServiceLocator_KqZSwLyService', false],
+            'App\\Controller\\Api\\ProfesseurController::getProfesseurAvis' => ['privates', '.service_locator.KqZSwLy', 'get_ServiceLocator_KqZSwLyService', false],
+            'App\\Controller\\Api\\ProfesseurController::getProfesseurCours' => ['privates', '.service_locator.KqZSwLy', 'get_ServiceLocator_KqZSwLyService', false],
+            'App\\Controller\\Api\\ProfesseurController::getProfesseurs' => ['privates', '.service_locator._CDY2gJ', 'get_ServiceLocator_CDY2gJService', false],
+            'App\\Controller\\Api\\ProfesseurController::putProfesseurAvis' => ['privates', '.service_locator.AXZ0CZ.', 'get_ServiceLocator_AXZ0CZ_Service', false],
+            'App\\Controller\\ProfesseurController::create' => ['privates', '.service_locator._CDY2gJ', 'get_ServiceLocator_CDY2gJService', false],
+            'App\\Controller\\ProfesseurController::delete' => ['privates', '.service_locator.MEkRFnv', 'get_ServiceLocator_MEkRFnvService', false],
+            'App\\Controller\\ProfesseurController::edit' => ['privates', '.service_locator._CDY2gJ', 'get_ServiceLocator_CDY2gJService', false],
+        ], [
+            'App\\Controller\\Api\\CoursController::deleteCours' => '?',
+            'App\\Controller\\Api\\CoursController::getCours' => '?',
+            'App\\Controller\\Api\\CoursController::getUnCours' => '?',
+            'App\\Controller\\Api\\ProfesseurController::deleteAvis' => '?',
+            'App\\Controller\\Api\\ProfesseurController::getProfesseur' => '?',
+            'App\\Controller\\Api\\ProfesseurController::getProfesseurAvis' => '?',
+            'App\\Controller\\Api\\ProfesseurController::getProfesseurCours' => '?',
+            'App\\Controller\\Api\\ProfesseurController::getProfesseurs' => '?',
+            'App\\Controller\\Api\\ProfesseurController::putProfesseurAvis' => '?',
+            'App\\Controller\\ProfesseurController::create' => '?',
+            'App\\Controller\\ProfesseurController::delete' => '?',
+            'App\\Controller\\ProfesseurController::edit' => '?',
         ]);
     }
 
@@ -2658,7 +2676,7 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/TraceableValueResolver.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/NotTaggedControllerValueResolver.php';
 
-        return $this->privates['debug.argument_resolver.not_tagged_controller'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver(($this->privates['.service_locator.IiAlEqg'] ?? $this->get_ServiceLocator_IiAlEqgService())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
+        return $this->privates['debug.argument_resolver.not_tagged_controller'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver(($this->privates['.service_locator.pSoRQ4j'] ?? $this->get_ServiceLocator_PSoRQ4jService())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
     }
 
     /**
@@ -2700,7 +2718,7 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/TraceableValueResolver.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/ServiceValueResolver.php';
 
-        return $this->privates['debug.argument_resolver.service'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver(($this->privates['.service_locator.IiAlEqg'] ?? $this->get_ServiceLocator_IiAlEqgService())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
+        return $this->privates['debug.argument_resolver.service'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver(($this->privates['.service_locator.pSoRQ4j'] ?? $this->get_ServiceLocator_PSoRQ4jService())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
     }
 
     /**
@@ -5723,18 +5741,24 @@ class App_KernelDevDebugContainer extends Container
             'security.access.always_authenticate_before_granting' => false,
             'security.authentication.hide_user_not_found' => true,
             'easyadmin.config' => [
+                'formats' => [
+                    'date' => 'd/m/Y',
+                    'time' => 'H:i',
+                    'datetime' => 'd/m/Y H:i',
+                    'dateinterval' => '%y Year(s) %m Month(s) %d Day(s)',
+                ],
                 'entities' => [
                     'Professeur' => [
                         'class' => 'App\\Entity\\Professeur',
                         'name' => 'Professeur',
                     ],
-                    'Avis' => [
-                        'class' => 'App\\Entity\\Avis',
-                        'name' => 'Avis',
-                    ],
                     'Matiere' => [
                         'class' => 'App\\Entity\\Matiere',
                         'name' => 'Matiere',
+                    ],
+                    'Avis' => [
+                        'class' => 'App\\Entity\\Avis',
+                        'name' => 'Avis',
                     ],
                     'Salle' => [
                         'class' => 'App\\Entity\\Salle',
@@ -5742,16 +5766,30 @@ class App_KernelDevDebugContainer extends Container
                     ],
                     'Cours' => [
                         'class' => 'App\\Entity\\Cours',
+                        'form' => [
+                            'fields' => [
+                                0 => 'dateHeureDebut',
+                                1 => 'dateHeureFin',
+                                2 => 'matiere',
+                                3 => 'professeur',
+                                4 => 'salle',
+                                5 => [
+                                    'property' => 'type',
+                                    'type' => 'choice',
+                                    'type_options' => [
+                                        'choices' => [
+                                            'Cours' => 'Cours',
+                                            'TD' => 'TD',
+                                            'TP' => 'TP',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
                         'name' => 'Cours',
                     ],
                 ],
                 'site_name' => 'EasyAdmin',
-                'formats' => [
-                    'date' => 'Y-m-d',
-                    'time' => 'H:i:s',
-                    'datetime' => 'F j, Y H:i',
-                    'dateinterval' => '%y Year(s) %m Month(s) %d Day(s)',
-                ],
                 'disabled_actions' => [
 
                 ],
