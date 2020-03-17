@@ -179,6 +179,17 @@ class Salle extends \App\Entity\Salle implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function toArray()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
+
+        return parent::toArray();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function __toString()
     {
 

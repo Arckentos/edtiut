@@ -33,6 +33,14 @@ class Salle
         $this->cours = new ArrayCollection();
     }
 
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'numero' => $this->getNumero(),
+        ];
+    }
+
     public function __toString()
     {
         return strval($this->numero);

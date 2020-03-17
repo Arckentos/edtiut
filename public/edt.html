@@ -35,13 +35,13 @@
                             <div class="col-3 mb-4" style="max-width:none" v-for="unCours in cours">
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{unCours.matiere}}</h5>
+                                        <h5 class="card-title">{{unCours.matiere.titre}}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
                                             {{unCours.dateHeureFin}}</h6>
-                                        <p class="card-text">{{ unCours.date }} {{unCours.type}} {{unCours.salle}}</p>
+                                        <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}</p>
                                     </div>
                                     <div class="card-footer text-muted">
-                                        {{unCours.professeur}}
+                                        {{unCours.professeur.nom}}
                                     </div>
                                 </div>
                             </div>

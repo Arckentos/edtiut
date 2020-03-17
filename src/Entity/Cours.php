@@ -79,9 +79,15 @@ class Cours
             'dateHeureDebut' => $this->getDateHeureDebut(),
             'dateHeureFin' => $this->getDateHeureFin(),
             'type' => $this->getType(),
-            'salle' =>$this->getSalle()->__toString(),
-            'professeur' =>$this->getProfesseur()->__toString(),
-            'matiere' =>$this->getMatiere()->__toString(),
+            'professeur' =>array_map(function($professeur){
+                return $professeur;
+            }, $this->getProfesseur()->toArray()),
+            'matiere' =>array_map(function($matiere){
+                return $matiere;
+            }, $this->getMatiere()->toArray()),
+            'salle' =>array_map(function($salle){
+                return $salle;
+            }, $this->getSalle()->toArray())
         ];
     }
 
