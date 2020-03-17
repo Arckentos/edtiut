@@ -212,9 +212,10 @@
           <parameter key="class">App\Entity\Cours</parameter>
           <parameter key="form" type="collection">
             <parameter key="fields" type="collection">
+              <parameter>matiere</parameter>
+              <parameter>date</parameter>
               <parameter>dateHeureDebut</parameter>
               <parameter>dateHeureFin</parameter>
-              <parameter>matiere</parameter>
               <parameter>professeur</parameter>
               <parameter>salle</parameter>
               <parameter type="collection">

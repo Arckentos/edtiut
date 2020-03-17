@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerAX4WUV1;
+namespace ContainerWuBFZW0;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -5741,18 +5741,24 @@ class App_KernelDevDebugContainer extends Container
             'security.access.always_authenticate_before_granting' => false,
             'security.authentication.hide_user_not_found' => true,
             'easyadmin.config' => [
+                'formats' => [
+                    'date' => 'd/m/Y',
+                    'time' => 'H:i',
+                    'datetime' => 'd/m/Y H:i',
+                    'dateinterval' => '%y Year(s) %m Month(s) %d Day(s)',
+                ],
                 'entities' => [
                     'Professeur' => [
                         'class' => 'App\\Entity\\Professeur',
                         'name' => 'Professeur',
                     ],
-                    'Avis' => [
-                        'class' => 'App\\Entity\\Avis',
-                        'name' => 'Avis',
-                    ],
                     'Matiere' => [
                         'class' => 'App\\Entity\\Matiere',
                         'name' => 'Matiere',
+                    ],
+                    'Avis' => [
+                        'class' => 'App\\Entity\\Avis',
+                        'name' => 'Avis',
                     ],
                     'Salle' => [
                         'class' => 'App\\Entity\\Salle',
@@ -5760,16 +5766,31 @@ class App_KernelDevDebugContainer extends Container
                     ],
                     'Cours' => [
                         'class' => 'App\\Entity\\Cours',
+                        'form' => [
+                            'fields' => [
+                                0 => 'matiere',
+                                1 => 'date',
+                                2 => 'dateHeureDebut',
+                                3 => 'dateHeureFin',
+                                4 => 'professeur',
+                                5 => 'salle',
+                                6 => [
+                                    'property' => 'type',
+                                    'type' => 'choice',
+                                    'type_options' => [
+                                        'choices' => [
+                                            'Cours' => 'Cours',
+                                            'TD' => 'TD',
+                                            'TP' => 'TP',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
                         'name' => 'Cours',
                     ],
                 ],
                 'site_name' => 'EasyAdmin',
-                'formats' => [
-                    'date' => 'Y-m-d',
-                    'time' => 'H:i:s',
-                    'datetime' => 'F j, Y H:i',
-                    'dateinterval' => '%y Year(s) %m Month(s) %d Day(s)',
-                ],
                 'disabled_actions' => [
 
                 ],

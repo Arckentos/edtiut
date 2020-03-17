@@ -1,6 +1,6 @@
 <?php
 
-namespace Container4aFtmWw;
+namespace ContainerGx5gJ6I;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -5768,9 +5768,9 @@ class App_KernelDevDebugContainer extends Container
                         'class' => 'App\\Entity\\Cours',
                         'form' => [
                             'fields' => [
-                                0 => 'dateHeureDebut',
-                                1 => 'dateHeureFin',
-                                2 => 'matiere',
+                                0 => 'matiere',
+                                1 => 'dateHeureDebut',
+                                2 => 'dateHeureFin',
                                 3 => 'professeur',
                                 4 => 'salle',
                                 5 => [

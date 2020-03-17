@@ -30,19 +30,24 @@ class Matiere
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Professeur", mappedBy="matiere")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Professeur", mappedBy="matieres")
      */
     private $professeurs;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Cours", mappedBy="matiere")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $cours;
+
+
+
 
 
     public function __construct()
     {
         $this->professeurs = new ArrayCollection();
+        $this->cours = new ArrayCollection();
     }
 
     public function __toString()
@@ -85,6 +90,9 @@ class Matiere
 
         return $this;
     }
+
+
+
 
     /**
      * @return Collection|Professeur[]
