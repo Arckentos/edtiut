@@ -1,11 +1,7 @@
 <?php
 
-<<<<<<< HEAD:var/cache/dev/ContainerZhKIVyx/App_KernelDevDebugContainer.php
-namespace ContainerZhKIVyx;
+namespace ContainerVFR1clz;
 
-=======
-namespace ContainerGx5gJ6I;
->>>>>>> 1770a26b019bdbcb4da6884790f3eb2dc4585d66:var/cache/dev/ContainerGx5gJ6I/App_KernelDevDebugContainer.php
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -5774,11 +5770,12 @@ class App_KernelDevDebugContainer extends Container
                         'form' => [
                             'fields' => [
                                 0 => 'matiere',
-                                1 => 'dateHeureDebut',
-                                2 => 'dateHeureFin',
-                                3 => 'professeur',
-                                4 => 'salle',
-                                5 => [
+                                1 => 'date',
+                                2 => 'dateHeureDebut',
+                                3 => 'dateHeureFin',
+                                4 => 'professeur',
+                                5 => 'salle',
+                                6 => [
                                     'property' => 'type',
                                     'type' => 'choice',
                                     'type_options' => [
