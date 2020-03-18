@@ -27,9 +27,11 @@
                         </div>
                         <div class="mt-3">
 
-                            <select name="selectViewType" id="selectViewType" v-model="view">
-                                <option value="listingByDay">Jour</option>
-                                <option value="listingByWeek">Semaine</option>
+                            <select name="selectViewType" id="selectViewType" v-model="selectViewType"
+                                @click="test(selectViewType)">
+                                <option v-for="option in selectViewTypeOptions" v-bind:value="option.value">
+                                    {{ option.text }}
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -41,7 +43,7 @@
                                 <h3 class="mt-3 mb-3">Emploi du temps du {{displayDate}}</h3>
                             </div>
 
-                            <div class="col-3 mb-4" style="max-width:none" v-for="unCours in cours"
+                            <div class="col-3 mb-4" style="max-width:min-content" v-for="unCours in cours"
                                 v-if="unCours.date == displayDate">
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
@@ -53,7 +55,7 @@
                                     </div>
                                     <div class="card-footer text-muted">
                                         {{unCours.professeur.nom}}
-                                        <input type="image" src="img/info.svg"
+                                        <input type="image" src="img/info.svg" @click="getUnCours(unCours)"
                                             style="width: 16px; height: 16px; float: right;" alt="information_button">
                                     </div>
                                 </div>
@@ -63,7 +65,7 @@
                         <!-- Week View -->
                         <div class="row" v-if="view == 'listingByWeek'">
                             <div class="col-12">
-                                <h3 class="mt-3 mb-3">Emploi du temps du {{displayDate}} au {{displayDate}}</h3>
+                                <h3 class="mt-3 mb-3">Emploi du temps du {{tabWeek[0]}} au {{tabWeek[4]}}</h3>
                             </div>
                             <div class="col-12" style="display: inline-flex;">
                                 <div class="col-2">
@@ -201,17 +203,82 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
+
+                        <!-- Detail View -->
+                        <div class="row" v-if="view == 'detailUnCours'">
+                            <div class="col-12">
+                                <h3 class="mt-3 mb-3">Emploi du temps du {{displayDate}}</h3>
+                            </div>
+                            <div class="col-12">
+                                <form>
+                                    <div class="form-group row">
+                                        <label for="matiere" class="col-sm-2 col-form-label">Matiere</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" readonly class="form-control" style="width:min-content"
+                                                id="matiere" v-model="unCours.matiere.titre">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="date" class="col-sm-2 col-form-label">Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" readonly class="form-control" style="width:min-content"
+                                                id="date" v-model="unCours.date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dateHeureDebut" class="col-sm-2 col-form-label">Heure Debut</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" readonly class="form-control" style="width:min-content"
+                                                id="dateHeureDebut" v-model="unCours.dateHeureDebut">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dateHeureFin" class="col-sm-2 col-form-label">Heure Fin</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" readonly class="form-control" style="width:min-content"
+                                                id="dateHeureFin" v-model="unCours.dateHeureFin">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="type" class="col-sm-2 col-form-label">Type</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" readonly class="form-control" style="width:min-content"
+                                                id="type" v-model="unCours.type">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="professeur" class="col-sm-2 col-form-label">Professeur</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" readonly class="form-control" style="width:min-content"
+                                                id="professeur" v-model="unCours.professeur.nom">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="salle" class="col-sm-2 col-form-label">Salle</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" readonly class="form-control" style="width:min-content"
+                                                id="salle" v-model="unCours.salle.numero">
+                                        </div>
+                                    </div>
+                                    <input type="button" class="btn btn-danger" value="Supprimer">
+                                    <input type="button" class="btn btn-light" value="Retour"
+                                        @click="view = 'listingByDay'">
+                                    <input type="button" class="btn btn-primary" value="Modifier">
+
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- New View -->
                         <div class="row" v-if="view == 'new'">
                             <div class="col-12">
                                 <input type="text" name="" id="" value="test">
                                 <input type="button" value="" @click="view = 'listingByDay'">
                             </div>
-
                         </div>
+
                     </div>
 
 
@@ -289,13 +356,22 @@
                 profNotes: [],
                 mesAvis: [],
                 cours: [],
+                unCours: [],
                 tabWeek: [],
                 todayDate: "",
                 displayDate: "",
                 view: "listingByDay",
+                selectViewType: 'listingByDay',
+                selectViewTypeOptions: [
+                    { text: 'Jour', value: 'listingByDay' },
+                    { text: 'Semaine', value: 'listingByWeek' },
+                ]
             },
             methods: {
-                getProfesseurs: function () {
+                test: function (param) {
+                    this.view = param;
+                    console.log(param);
+                }, getProfesseurs: function () {
                     axios.get(this.apiBase + '/professeurs')
                         .then(response => {
                             this.professeurs = response.data;
@@ -303,8 +379,7 @@
                         .catch(error => {
                             console.log(error);
                         });
-                },
-                getProfesseursAvis: function (professeurId) {
+                }, getProfesseursAvis: function (professeurId) {
                     this.nouvelAvis = {
                         note: 0,
                         commentaire: '',
@@ -319,8 +394,7 @@
                         .catch(error => {
                             console.log(error);
                         });
-                },
-                putProfesseurAvis: function () {
+                }, putProfesseurAvis: function () {
                     axios.put(this.apiBase + '/professeurs/' + this.professeurSelectionne.id + '/avis', this.nouvelAvis)
                         .then(response => {
                             this.avis.push(response.data);
@@ -356,6 +430,21 @@
                         .catch(error => {
                             console.log(error);
                         });
+                }, getUnCours: function (coursId) {
+                    axios.get(this.apiBase + '/cours/' + coursId.id)
+                        .then(response => {
+                            this.unCours = response.data;
+                            var currentDate = new Date(this.unCours.date)
+                            this.unCours.date = this.formatDate(currentDate);
+                            currentDate = new Date(this.unCours.dateHeureDebut);
+                            this.unCours.dateHeureDebut = this.formatHour(currentDate);
+                            currentDate = new Date(this.unCours.dateHeureFin);
+                            this.unCours.dateHeureFin = this.formatHour(currentDate);
+                            this.view = 'detailUnCours';
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                 }, newCours: function () {
                     this.view = 'new';
                 }, backAction: function () {
@@ -372,9 +461,10 @@
                 }, nextAction: function () {
                     if (this.view == "listingByDay") {
                         var currentDate = new Date(this.date);
-                        this.getCurrentWeek(currentDate);
                         currentDate.setDate(currentDate.getDate() + 1);
                         this.date = currentDate;
+                        // console.log(currentDate.getDay())
+                        // this.getCurrentWeek(currentDate);
                         this.displayDate = this.formatDate(currentDate);
                     } else if (this.view == "listingByWeek") {
                     } else {
@@ -382,10 +472,14 @@
                     }
                 }, getCurrentWeek: function (madate) {
                     var tdate = new Date(madate);
-                    var i = 0;
-                    while (tdate.getDay() != 0) {
+                    while (tdate.getDay() != 1) {
                         tdate.setDate(tdate.getDate() - 1);
                     }
+                    while(tdate.getDay() != 6){
+                        this.tabWeek.push(this.formatDate(tdate.toString()));
+                        tdate.setDate(tdate.getDate() + 1);
+                    }
+
                     // Remplir un tableau avec les dates de la semaine
                 }, formatDate: function (date) {
                     var currentDate = new Date(date);
@@ -412,6 +506,7 @@
                 this.todayDate = new Date();
                 this.date = this.todayDate
                 this.displayDate = this.formatDate(this.todayDate);
+                this.getCurrentWeek(this.todayDate);
                 this.getCours()
             }
         });

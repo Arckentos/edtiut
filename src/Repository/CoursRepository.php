@@ -19,6 +19,11 @@ class CoursRepository extends ServiceEntityRepository
         parent::__construct($registry, Cours::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('dateHeureDebut' => 'ASC'));
+    }
+
     // /**
     //  * @return Cours[] Returns an array of Cours objects
     //  */

@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as UniqueEntity;
-
+use Symfony\Component\Validator\Constraints\Time;
 
 //  * @UniqueEntity(
 //  *      fields={"professeur", "dateHeureDebut"},
@@ -15,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CoursRepository")
-
+ 
  */
 class Cours
 {
@@ -68,7 +69,12 @@ class Cours
     private $matiere;
 
 
-
+    public function __construct()
+    {
+        $this->date = new \DateTime();    
+        $this->dateHeureDebut = new \DateTime();
+        $this->dateHeureFin = new \DateTime();
+    }
 
     public function __toString()
     {
