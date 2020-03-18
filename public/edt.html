@@ -176,6 +176,7 @@
                 date: "01.01.1970",
                 displayDate: "",
                 view: "listingByDay",
+                matieres: [],
             },
             methods: {
                 getProfesseurs: function () {
@@ -187,17 +188,15 @@
                             console.log(error);
                         });
                 },
-                //
-                getMatieresProfesseur: function () {
-                    axios.get(this.apiBase + '/professeur/' + professeurId + '/matieres')
+                getMatieres: function () {
+                    axios.get(this.apiBase + '/matieres')
                         .then(response => {
-                            this.professeurs = response.data;
+                            this.matieres = response.data;
                         })
                         .catch(error => {
                             console.log(error);
                         });
                 },
-                //
                 getProfesseursAvis: function (professeurId) {
                     this.nouvelAvis = {
                         note: 0,
