@@ -68,8 +68,31 @@
                             </div>
 
                             <div class="col-12" v-if="view == 'new'">
-                                <input type="text" name="" id="" value="test">
-                                <input type="button" value="" @click="view = 'listingByDay'">
+                                <form action="">
+                                    <div class="form-group">
+                                        <label class="form-control">Heure de début</label>
+                                        <input type="time" name="" id="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-control">Heure de fin</label>
+                                        <input type="time" name="" id="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                            <select name="" id="" class="form-control">
+                                                <option v-for="unProf in professeurs" :value="unProf.nom" :key="unProf.nom">
+                                                    {{unProf.prenom}} {{ unProf.nom }}
+                                                </option>
+                                            </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="" id="" class="form-control">
+                                            <option v-for="unProf in professeurs" :value="unProf.nom" :key="unProf.nom">
+                                                {{ professeurSelectionne }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <input type="button" value="Ajouter ce cours" @click="view = 'listingByDay'" class="form-control btn btn-primary">
+                                </form>
                             </div>
 
                         </div>
@@ -164,6 +187,17 @@
                             console.log(error);
                         });
                 },
+                //
+                getMatieresProfesseur: function () {
+                    axios.get(this.apiBase + '/professeur/' + professeurId + '/matieres')
+                        .then(response => {
+                            this.professeurs = response.data;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                //
                 getProfesseursAvis: function (professeurId) {
                     this.nouvelAvis = {
                         note: 0,
@@ -250,7 +284,7 @@
                 },
             },
             mounted() {
-                // this.getProfesseurs();
+                this.getProfesseurs();
                 this.date = new Date();
                 this.displayDate = this.formatDate(this.date);
                 this.getCours()

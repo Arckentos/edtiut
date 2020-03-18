@@ -43,9 +43,9 @@ class CoursController extends AbstractController
     }
 
     /**
-     * @Route("/cours/{id}/delete", name="api_delete__cours", methods={"DELETE"})
+     * @Route("/cours/{id}/delete", name="api_delete_cours", methods={"DELETE"})
      */
-    public function deleteCours(EntityManagerInterface $em, Avis $unCours)
+    public function deleteCours(EntityManagerInterface $em, Cours $unCours)
     {
         $em->remove($unCours);
         $em->flush();
@@ -58,6 +58,21 @@ class CoursController extends AbstractController
 
         // OU => Symfony renvoie tout seul le header
         // $return $this->json(null,204);
+    }
+
+    /**
+     * @Route("/cours/{id}/put", name="api_put_cours", methods={"PUT"})
+     */
+    public function putCours(EntityManagerInterface $em, Cours $unCours)
+    {
+        $em->persist($unCours);
+        $em->flush();
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+        $response->setStatusCode(204);
+
+        return $response;
     }
 
 

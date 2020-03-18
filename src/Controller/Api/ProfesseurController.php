@@ -83,6 +83,18 @@ class ProfesseurController extends AbstractController
         }, $professeur->getCours()->toArray()));
     }
 
+    //
+    /**
+     * @Route("/professeur/{id}/matieres", name="api_get_professeur_matieres", methods="GET")
+     */
+    public function getMatieresProfesseur(Professeur $professeur)
+    {
+        return $this->json(array_map(function ($unProfesseur) {
+            return $unProfesseur->toArray();
+        }, $professeur->getMatieres()->toArray()));
+    }
+    //
+
     /**
      * @Route("/professeurs/{id}/avis", name="api_put_professeurs_avis", methods="PUT")
      */
