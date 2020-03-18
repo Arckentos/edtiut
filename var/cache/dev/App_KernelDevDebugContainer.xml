@@ -4508,11 +4508,11 @@
         <argument key="unCours" type="service" id=".errored..service_locator.CBdC_sR.App\Entity\Cours"/>
       </argument>
     </service>
-    <service id=".service_locator.bLLPtQ0" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.L9EVYYQ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
-        <argument key="unCours" type="service" id=".errored..service_locator.bLLPtQ0.App\Entity\Avis"/>
+        <argument key="unCours" type="service" id=".errored..service_locator.L9EVYYQ.App\Entity\Cours"/>
       </argument>
     </service>
     <service id=".service_locator.KqZSwLy" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4543,13 +4543,15 @@
         <argument key="professeur" type="service" id=".errored..service_locator.MEkRFnv.App\Entity\Professeur"/>
       </argument>
     </service>
-    <service id=".service_locator.pSoRQ4j" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Aci1ks7" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\Api\CoursController::deleteCours" type="service" id=".service_locator.bLLPtQ0"/>
+        <argument key="App\Controller\Api\CoursController::createCours" type="service" id=".service_locator._CDY2gJ"/>
+        <argument key="App\Controller\Api\CoursController::deleteCours" type="service" id=".service_locator.L9EVYYQ"/>
         <argument key="App\Controller\Api\CoursController::getCours" type="service" id=".service_locator._CDY2gJ"/>
         <argument key="App\Controller\Api\CoursController::getUnCours" type="service" id=".service_locator.CBdC_sR"/>
         <argument key="App\Controller\Api\ProfesseurController::deleteAvis" type="service" id=".service_locator.Sf.RFGb"/>
+        <argument key="App\Controller\Api\ProfesseurController::getMatieres" type="service" id=".service_locator._CDY2gJ"/>
         <argument key="App\Controller\Api\ProfesseurController::getProfesseur" type="service" id=".service_locator.KqZSwLy"/>
         <argument key="App\Controller\Api\ProfesseurController::getProfesseurAvis" type="service" id=".service_locator.KqZSwLy"/>
         <argument key="App\Controller\Api\ProfesseurController::getProfesseurCours" type="service" id=".service_locator.KqZSwLy"/>
@@ -4869,15 +4871,15 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.pSoRQ4j"/>
+      <argument type="service" id=".service_locator.Aci1ks7"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.pSoRQ4j"/>
+      <argument type="service" id=".service_locator.Aci1ks7"/>
     </service>
     <service id=".errored..service_locator.CBdC_sR.App\Entity\Cours" class="App\Entity\Cours"/>
-    <service id=".errored..service_locator.bLLPtQ0.App\Entity\Avis" class="App\Entity\Avis"/>
+    <service id=".errored..service_locator.L9EVYYQ.App\Entity\Cours" class="App\Entity\Cours"/>
     <service id=".errored..service_locator.KqZSwLy.App\Entity\Professeur" class="App\Entity\Professeur"/>
     <service id=".errored..service_locator.AXZ0CZ..App\Entity\Professeur" class="App\Entity\Professeur"/>
     <service id=".errored..service_locator.Sf.RFGb.App\Entity\Avis" class="App\Entity\Avis"/>
@@ -5178,7 +5180,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Form\Filter\FilterRegistry" alias="easyadmin.filter.registry" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.pSoRQ4j"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Aci1ks7"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger" public="false"/>
     <service id=".service_locator.tHpW6v3" alias=".service_locator.Y7gDuDN" public="false"/>

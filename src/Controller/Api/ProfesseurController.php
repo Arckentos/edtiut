@@ -4,7 +4,7 @@ namespace App\Controller\Api;
 
 use App\Entity\Avis;
 use App\Entity\Professeur;
-use App\Entity\Cours;
+use App\Entity\Matiere;
 use App\Form\AvisType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -164,5 +164,14 @@ class ProfesseurController extends AbstractController
         // $return $this->json(null,204);
     }
 
-
+    /**
+     * @Route("/matieres", name="api_matieres")
+     */
+    public function getMatieres(EntityManagerInterface $em)
+    {
+        $matieres = $em->getRepository(Matiere::class)->findAll();
+        return $this->json(array_map(function ($matiere) {
+            return $matiere->toArray();
+        }, $matieres));
+    }
 }
