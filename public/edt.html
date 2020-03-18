@@ -28,7 +28,7 @@
                         <div class="mt-3">
 
                             <select name="selectViewType" id="selectViewType" v-model="selectViewType"
-                                @click="test(selectViewType)">
+                                @click="changeView(selectViewType)">
                                 <option v-for="option in selectViewTypeOptions" v-bind:value="option.value">
                                     {{ option.text }}
                                 </option>
@@ -70,139 +70,99 @@
                             <div class="col-12" style="display: inline-flex;">
                                 <div class="col-2">
                                     <h3 class="text-center">Lundi</h3>
-                                    <div class="card mb-2" style="width: auto;">
+                                    <div class="card mb-2" style="width: auto;" v-for="unCours in cours" v-if="tabWeek[0] == unCours.date">
                                         <div class="card-body">
-                                            <h5 class="card-title">Anglais</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">10h00 -
-                                                11h00</h6>
-                                            <p class="card-text">17.03.2020 TD 101
-                                            </p>
+                                            <h5 class="card-title">{{unCours.matiere.titre}}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
+                                                {{unCours.dateHeureFin}}</h6>
+                                                <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}
+                                                </p>
                                         </div>
                                         <div class="card-footer text-muted">
-                                            PAUILLAC
-                                            <input type="image" src="img/info.svg"
-                                                style="width: 16px; height: 16px; float: right;"
-                                                alt="information_button">
-                                        </div>
-                                    </div>
-                                    <div class="card mb-2" style="width: auto;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Anglais</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">10h00 -
-                                                11h00</h6>
-                                            <p class="card-text">17.03.2020 TD 101
-                                            </p>
-                                        </div>
-                                        <div class="card-footer text-muted">
-                                            PAUILLAC
+                                            {{unCours.professeur.nom}}
                                             <input type="image" src="img/info.svg"
                                                 style="width: 16px; height: 16px; float: right;"
                                                 alt="information_button">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-2">
                                     <h3 class="text-center">Mardi</h3>
-                                    <div class="card mb-2" style="width: auto;">
+                                    <div class="card mb-2" style="width: auto;" v-for="unCours in cours" v-if="tabWeek[1] == unCours.date">
                                         <div class="card-body">
-                                            <h5 class="card-title">Anglais</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">10h00 -
-                                                11h00</h6>
-                                            <p class="card-text">17.03.2020 TD 101
-                                            </p>
+                                            <h5 class="card-title">{{unCours.matiere.titre}}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
+                                                {{unCours.dateHeureFin}}</h6>
+                                                <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}
+                                                </p>
                                         </div>
                                         <div class="card-footer text-muted">
-                                            PAUILLAC
+                                            {{unCours.professeur.nom}}
                                             <input type="image" src="img/info.svg"
                                                 style="width: 16px; height: 16px; float: right;"
                                                 alt="information_button">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-2">
                                     <h3 class="text-center">Mercredi</h3>
-                                    <div class="card mb-2" style="width: auto;">
+                                    <div class="card mb-2" style="width: auto;" v-for="unCours in cours" v-if="tabWeek[2] == unCours.date">
                                         <div class="card-body">
-                                            <h5 class="card-title">Anglais</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">10h00 -
-                                                11h00</h6>
-                                            <p class="card-text">17.03.2020 TD 101
-                                            </p>
+                                            <h5 class="card-title">{{unCours.matiere.titre}}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
+                                                {{unCours.dateHeureFin}}</h6>
+                                                <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}
+                                                </p>
                                         </div>
                                         <div class="card-footer text-muted">
-                                            PAUILLAC
+                                            {{unCours.professeur.nom}}
                                             <input type="image" src="img/info.svg"
                                                 style="width: 16px; height: 16px; float: right;"
                                                 alt="information_button">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-2">
                                     <h3 class="text-center">Jeudi</h3>
-                                    <div class="card mb-2" style="width: auto;">
+                                    <div class="card mb-2" style="width: auto;" v-for="unCours in cours" v-if="tabWeek[3] == unCours.date">
                                         <div class="card-body">
-                                            <h5 class="card-title">Anglais</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">10h00 -
-                                                11h00</h6>
-                                            <p class="card-text">17.03.2020 TD 101
-                                            </p>
+                                            <h5 class="card-title">{{unCours.matiere.titre}}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
+                                                {{unCours.dateHeureFin}}</h6>
+                                                <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}
+                                                </p>
                                         </div>
                                         <div class="card-footer text-muted">
-                                            PAUILLAC
+                                            {{unCours.professeur.nom}}
                                             <input type="image" src="img/info.svg"
                                                 style="width: 16px; height: 16px; float: right;"
                                                 alt="information_button">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-2">
                                     <h3 class="text-center">Vendredi</h3>
-                                    <div class="card mb-2" style="width: auto;">
+                                    <div class="card mb-2" style="width: auto;" v-for="unCours in cours" v-if="tabWeek[4] == unCours.date">
                                         <div class="card-body">
-                                            <h5 class="card-title">Anglais</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">10h00 -
-                                                11h00</h6>
-                                            <p class="card-text">17.03.2020 TD 101
-                                            </p>
+                                            <h5 class="card-title">{{unCours.matiere.titre}}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">{{unCours.dateHeureDebut}} -
+                                                {{unCours.dateHeureFin}}</h6>
+                                                <p class="card-text">{{unCours.date}} {{unCours.type}} {{unCours.salle.numero}}
+                                                </p>
                                         </div>
                                         <div class="card-footer text-muted">
-                                            PAUILLAC
-                                            <input type="image" src="img/info.svg"
-                                                style="width: 16px; height: 16px; float: right;"
-                                                alt="information_button">
-                                        </div>
-                                    </div>
-                                    <div class="card mb-2" style="width: auto;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Anglais</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">10h00 -
-                                                11h00</h6>
-                                            <p class="card-text">17.03.2020 TD 101
-                                            </p>
-                                        </div>
-                                        <div class="card-footer text-muted">
-                                            PAUILLAC
-                                            <input type="image" src="img/info.svg"
-                                                style="width: 16px; height: 16px; float: right;"
-                                                alt="information_button">
-                                        </div>
-                                    </div>
-                                    <div class="card mb-2" style="width: auto;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Anglais</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">10h00 -
-                                                11h00</h6>
-                                            <p class="card-text">17.03.2020 TD 101
-                                            </p>
-                                        </div>
-                                        <div class="card-footer text-muted">
-                                            PAUILLAC
+                                            {{unCours.professeur.nom}}
                                             <input type="image" src="img/info.svg"
                                                 style="width: 16px; height: 16px; float: right;"
                                                 alt="information_button">
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
 
@@ -274,8 +234,70 @@
                         <!-- New View -->
                         <div class="row" v-if="view == 'new'">
                             <div class="col-12">
-                                <input type="text" name="" id="" value="test">
-                                <input type="button" value="" @click="view = 'listingByDay'">
+                                <h3 class="mt-3 mb-3">Ajouter un nouveau cours</h3>
+                            </div>
+                            <div class="col-12">
+                                <form action="">
+                                    <div class="form-group row">
+                                        <label for="matiere" class="col-sm-2 col-form-label">Matiere</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" style="width:220px"
+                                                id="matiere">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="date" class="col-sm-2 col-form-label">Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" style="width:220px" id="date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dateHeureDebut" class="col-sm-2 col-form-label">Heure Debut</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" style="width:220px"
+                                                id="dateHeureDebut">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dateHeureFin" class="col-sm-2 col-form-label">Heure Fin</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" style="width:220px"
+                                                id="dateHeureFin">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="type" class="col-sm-2 col-form-label">Type</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" style="width:220px" id="type">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="professeur" class="col-sm-2 col-form-label">Professeur</label>
+                                        <div class="col-sm-10">
+                                            <select name="" id="" class="form-control" style="width:220px">
+                                                <option v-for="unProf in professeurs" :value="unProf.id"
+                                                    :key="unProf.nom">
+                                                    {{unProf.prenom}} {{ unProf.nom }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="salle" class="col-sm-2 col-form-label">Salle</label>
+                                        <div class="col-sm-10">
+                                            <select name="" id="" class="form-control" style="width:220px">
+                                                <option v-for="matiere in matieres" :value="matiere.id"
+                                                    :key="matiere.nom">
+                                                    {{matiere.titre}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <input class="btn btn-light" type="button" value="Annuler">
+                                    <input class="btn btn-primary" type="button" value="Ajouter">
+
+                                </form>
                             </div>
                         </div>
 
@@ -368,11 +390,16 @@
                 ]
             },
             methods: {
-                test: function (param) {
-                    this.view = param;
-                    console.log(param);
-                }, getProfesseurs: function () {
+                getProfesseurs: function () {
                     axios.get(this.apiBase + '/professeurs')
+                        .then(response => {
+                            this.professeurs = response.data;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }, getMatieresProfesseur: function (professeurId) {
+                    axios.get(this.apiBase + '/professeurs/' + professeurId + '/matieres')
                         .then(response => {
                             this.professeurs = response.data;
                         })
@@ -454,33 +481,46 @@
                         this.date = currentDate;
                         this.displayDate = this.formatDate(currentDate);
                     } else if (this.view == "listingByWeek") {
-
+                        var currentDate = new Date(this.date);
+                        while (currentDate.getDay() != 1) {
+                            currentDate.setDate(currentDate.getDate() - 1);
+                        }
+                        currentDate.setDate(currentDate.getDate() - 7);
+                        this.getCurrentWeek(currentDate);
+                        this.date = currentDate;
+                        this.displayDate = this.formatDate(currentDate);
                     } else {
 
                     }
                 }, nextAction: function () {
                     if (this.view == "listingByDay") {
                         var currentDate = new Date(this.date);
+                        this.getCurrentWeek(currentDate);
                         currentDate.setDate(currentDate.getDate() + 1);
                         this.date = currentDate;
-                        // console.log(currentDate.getDay())
-                        // this.getCurrentWeek(currentDate);
                         this.displayDate = this.formatDate(currentDate);
                     } else if (this.view == "listingByWeek") {
+                        var currentDate = new Date(this.date);
+                        while (currentDate.getDay() != 1) {
+                            currentDate.setDate(currentDate.getDate() - 1);
+                        }
+                        currentDate.setDate(currentDate.getDate() + 7);
+                        this.getCurrentWeek(currentDate);
+                        this.date = currentDate;
+                        this.displayDate = this.formatDate(currentDate);
                     } else {
 
                     }
                 }, getCurrentWeek: function (madate) {
+                    this.tabWeek = [];
                     var tdate = new Date(madate);
                     while (tdate.getDay() != 1) {
                         tdate.setDate(tdate.getDate() - 1);
                     }
-                    while(tdate.getDay() != 6){
+                    while (tdate.getDay() != 6) {
                         this.tabWeek.push(this.formatDate(tdate.toString()));
                         tdate.setDate(tdate.getDate() + 1);
                     }
-
-                    // Remplir un tableau avec les dates de la semaine
                 }, formatDate: function (date) {
                     var currentDate = new Date(date);
                     var day = currentDate.getDate();
@@ -498,8 +538,11 @@
                     min < 10 ? min = "0" + min : min;
                     var currentHour = hour + ":" + min;
                     return currentHour;
-                }, isClassesToday: function (classesDate) {
-                    return this.displayDate == classesDate ? true : false;
+                }, changeView: function (param) {
+                    this.view = param;
+                    if (param == 'listingByWeek') {
+
+                    }
                 },
             },
             mounted() {
@@ -507,7 +550,9 @@
                 this.date = this.todayDate
                 this.displayDate = this.formatDate(this.todayDate);
                 this.getCurrentWeek(this.todayDate);
-                this.getCours()
+
+                this.getCours();
+                this.getProfesseurs();
             }
         });
     </script>
